@@ -3,3 +3,4 @@
 
 <%= link_to "Modifica Cliente", edit_client_path %>
 <%= link_to "Elimina Cliente", client_path(@client), method: :delete, data: { confirm: "Sei sicuro?"} %>
+<%= link_to "Nuova Fattura", new_client_doc_path(@client) %>
