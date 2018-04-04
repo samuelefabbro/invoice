@@ -1,0 +1,5 @@
+<h1><%= @client.name %></h1>
+<p><%= simple_format @client.info %></p>
+
+<%= link_to "Modifica Cliente", edit_client_path %>
+<%= link_to "Elimina Cliente", client_path(@client), method: :delete, data: { confirm: "Sei sicuro?"} %>

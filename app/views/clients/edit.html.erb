@@ -1,0 +1,9 @@
+<h1>Modifica cliente</h1>
+
+<%= simple_form_for @client do |f| %>
+
+  <%= f.input :name %>
+  <%= f.input :info %>
+  <%= f.button :submit, "Modifica cliente" %>
+
+<% end %>

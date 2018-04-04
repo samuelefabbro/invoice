@@ -4,6 +4,9 @@ class ClientsController < ApplicationController
     @clients = Client.all
   end
 
+  def show
+    @client = Client.find(params[:id])
+  end
 
   def new
     @client = Client.new
@@ -20,6 +23,26 @@ class ClientsController < ApplicationController
 
   end
 
+  def edit
+    @client =Client.find(params[:id])
+  end
+
+  def update
+    @client =Client.find(params[:id])
+
+    if @client.update(form_params)
+      redirect_to client_path(@client)
+    else
+      render "edit"
+    end
+  end
+
+  def destroy
+    @client = Client.find(params[:id])
+    @client.destroy
+
+    redirect_to clients_path
+  end
 
 
   private
