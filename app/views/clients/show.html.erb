@@ -4,3 +4,17 @@
 <%= link_to "Modifica Cliente", edit_client_path %>
 <%= link_to "Elimina Cliente", client_path(@client), method: :delete, data: { confirm: "Sei sicuro?"} %>
 <%= link_to "Nuova Fattura", new_client_doc_path(@client) %>
+
+<% @client.docs.order("created_at desc").each do |doc| %>
+
+	<div class="doc">
+		<%= doc.number %>
+		<p class="posted">
+					<%= doc.created_at.strftime("%d-%m-%Y") %>
+		</p>
+    <p class="price">
+      <%= doc.price %>
+    </p>
+	</div>
+
+<% end %>
