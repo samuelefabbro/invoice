@@ -1,5 +1,10 @@
 class DocsController < ApplicationController
 
+  def show
+    @client = Client.find(params[:client_id])
+    @doc = @client.docs.find(params[:id])
+  end
+
   def new
     @client = Client.find(params[:client_id])
     @doc = @client.docs.new
