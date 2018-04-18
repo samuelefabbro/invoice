@@ -1,5 +1,9 @@
 class DocsController < ApplicationController
 
+  def index
+    @docs = Doc.all
+  end
+
   def show
     @client = Client.find(params[:client_id])
     @doc = @client.docs.find(params[:id])
