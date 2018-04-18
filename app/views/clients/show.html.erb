@@ -8,7 +8,7 @@
 <% @client.docs.order("created_at asc").each do |doc| %>
 
 	<div class="doc">
-		<%= link_to doc.number, client_doc_path(doc) %>
+		<%= link_to doc.number, client_doc_path(@client, doc) %>
 		<p class="posted">
 					<%= doc.created_at.strftime("%d-%m-%Y") %>
 		</p>
