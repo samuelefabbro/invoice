@@ -22,11 +22,38 @@ class DocsController < ApplicationController
 
   def create
     @client = Client.find(params[:client_id])
-    @doc = @client.docs.new(params.require(:doc).permit(:number, :description, :price))
+    @doc = @client.docs.new(form_params)
 
     @doc.save
 
     redirect_to client_path(@client)
   end
+
+  def edit
+    @client = Client.find(params[:client_id])
+    @doc = @client.docs.find(params[:id])
+  end
+
+  def update
+    @client = Client.find(params[:client_id])
+    @doc = @client.docs.find(params[:id])
+
+    if @doc.update(form_params)
+      redirect_to doc_path(@doc)
+    else
+      render "edit"
+    end
+
+  end
+
+  def destroy
+  end
+
+  private
+
+  def form_params
+    params.require(:doc).permit(:number, :description, :price)
+  end
+
 
 end
