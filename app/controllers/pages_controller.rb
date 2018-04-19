@@ -4,4 +4,7 @@ class PagesController < ApplicationController
     @docs = Doc.all
   end
 
+  def show
+  end
+
 end

@@ -7,6 +7,12 @@ class DocsController < ApplicationController
   def show
     @client = Client.find(params[:client_id])
     @doc = @client.docs.find(params[:id])
+
+    @price = @doc.price
+    @inps = @price * 4 / 100
+    @ritenuta = @price * 20 / 100
+    @total = @price + @inps - @ritenuta
+
   end
 
   def new
