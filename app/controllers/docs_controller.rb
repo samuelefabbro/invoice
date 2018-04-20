@@ -39,14 +39,23 @@ class DocsController < ApplicationController
     @doc = @client.docs.find(params[:id])
 
     if @doc.update(form_params)
-      redirect_to doc_path(@doc)
+      flash[:success] = "Woo, you updated your doc"
+      redirect_to client_doc_path(@client, @doc)
     else
       render "edit"
     end
-
   end
 
   def destroy
+    @client = Client.find(params[:client_id])
+    @doc = @client.docs.find(params[:id])
+
+    if @doc.destroy
+      flash[:success] = "Woo, you destryed your doc"
+      redirect_to client_path(@client)
+    else
+      flash[:error] = "Ops, something went wrong"
+    end
   end
 
   private

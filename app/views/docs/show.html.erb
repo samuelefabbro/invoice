@@ -9,3 +9,4 @@
 
 <%= link_to "Indietro", client_path(@client) %>
 <%= link_to "Modifica Fattura", edit_client_doc_path(@client, @doc) %>
+<%= link_to "Elimina Fattura", client_doc_path(@client, @doc), method: :delete, data: { confirm: "Are you sure?"} %>
