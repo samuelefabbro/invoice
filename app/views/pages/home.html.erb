@@ -2,21 +2,19 @@
 
 <h2>Clienti</h2>
 
-<% @docs.each do |doc| %>
+<!-- <% @docs.each do |doc| %>
   <div class="card">
     <h2><%= doc.client.name %></h2>
     <p><%= link_to doc.number, client_doc_path(doc.client, doc) %></p>
   </div>
 
-<% end %>
+<% end %> -->
 
-<!-- <% @clients.each do |client| %>
-
+<% @clients.each do |client| %>
   <div class="card">
     <h2><%= client.name %></h2>
-    <% @docs.each do |doc| %>
-      <p><%= doc.client.name %></p>
+    <% client.docs.each do |doc| %>
+      <p><%= link_to doc.number, client_doc_path(doc.client, doc) %></p>
     <% end %>
   </div>
-
-<% end %> -->
+<% end %>
