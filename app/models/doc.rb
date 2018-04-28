@@ -5,4 +5,8 @@ class Doc < ApplicationRecord
   validates :description, presence: true
   validates :price, presence: true
 
+  def price_in_euro
+    price / 100    
+  end
+
 end

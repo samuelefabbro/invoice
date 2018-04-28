@@ -1,11 +1,17 @@
+<p><strong>Relevant di Samuele Fabbro</strong></p>
+<p>Via Sandro Gallo 165A Lido di Venezia 30126 Italia</p>
+<p>P.Iva 03789650276</p>
+<p>C.F. FBBSML77B25L736Q</p>
+
 <h1><%= @client.name %></h1>
 <p><%= @client.info %></p>
 
-<p>This is the fattura <%= @doc.number %></p>
-<p>Prezzo netto <%= @price %></p>
-<p>Rivalsa inps 4% <%= @inps %></p>
-<p>Ritenuta 20% -<%= @ritenuta %></p>
-<p><strong>Totale <%= @total %></strong></p>
+<p>Fattura n.<%= @doc.number %></p>
+<p><%= @doc.description %>
+<p>Prezzo netto <%= number_to_currency(@price, unit: "€") %></p>
+<p>Rivalsa inps 4% <%= number_to_currency(@inps, unit: "€") %></p>
+<p>Ritenuta 20% - <%= number_to_currency(@ritenuta, unit: "€") %></p>
+<p><strong>Totale <%= number_to_currency(@total, unit: "€") %></strong></p>
 
 <%= link_to "Indietro", client_path(@client) %>
 <%= link_to "Modifica Fattura", edit_client_doc_path(@client, @doc) %>

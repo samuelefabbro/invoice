@@ -1,5 +1,6 @@
 class DocsController < ApplicationController
 
+
   def index
     @docs = Doc.all
   end
@@ -8,7 +9,7 @@ class DocsController < ApplicationController
     @client = Client.find(params[:client_id])
     @doc = @client.docs.find(params[:id])
 
-    @price = @doc.price
+    @price = @doc.price_in_euro
     @inps = @price * 4 / 100
     @ritenuta = @price * 20 / 100
     @total = @price + @inps - @ritenuta
