@@ -14,6 +14,10 @@ class DocsController < ApplicationController
     @ritenuta = @price * 20 / 100
     @total = @price + @inps - @ritenuta
 
+    respond_to do |format|
+      format.html
+      format.pdf { render template: 'docs/show', pdf: @doc.number}
+    end
   end
 
   def new
@@ -58,6 +62,7 @@ class DocsController < ApplicationController
       flash[:error] = "Ops, something went wrong"
     end
   end
+
 
   private
 

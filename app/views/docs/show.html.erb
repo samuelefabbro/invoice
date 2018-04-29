@@ -1,18 +1,83 @@
-<p><strong>Relevant di Samuele Fabbro</strong></p>
-<p>Via Sandro Gallo 165A Lido di Venezia 30126 Italia</p>
-<p>P.Iva 03789650276</p>
-<p>C.F. FBBSML77B25L736Q</p>
+<%= link_to 'Create PDF document', client_doc_path(@client, @doc, format: :pdf), download: true %>
+<header>
+<div class="intestazione">
+  <h1><%= image_tag "relevant-logo" %></h1>
+  <h4>Relevant di Samuele Fabbro</h4>
+  <p>via Sandro Gallo 165A</p>
+  <p>30126 Lido di Venezia Italia</p>
+  <p>P.Iva 03789650276</p>
+  <p>C.F. FBBSML77B25L736Q</p>
+</div>
 
-<h1><%= @client.name %></h1>
-<p><%= @client.info %></p>
+<div class="termini">
+  <div class="fattura">
+    <h2>Fattura</h2>
+    <p><%= @doc.number %></p>
+  </div>
+  <div class="saldo">
+    <h3>Saldo da pagare</h3>
+    <h2><%= number_to_currency(@total, unit: "€") %></h2>
+  </div>
+  <div class="table">
+    <table style="width: 280px;" >
+      <tbody>
+        <tr>
+          <td>Data Fattura:</td>
+          <td><%= @doc.created_at.strftime("%d-%m-%Y") %></td>
+        </tr>
+        <tr>
+          <td>Termini:</td>
+          <td>Rimessa a Vista</td>
+        </tr>
+        <tr>
+          <td>Termini scadenza:</td>
+          <td>19.05.2018</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</header>
 
-<p>Fattura n.<%= @doc.number %></p>
-<p><%= @doc.description %>
-<p>Prezzo netto <%= number_to_currency(@price, unit: "€") %></p>
-<p>Rivalsa inps 4% <%= number_to_currency(@inps, unit: "€") %></p>
-<p>Ritenuta 20% - <%= number_to_currency(@ritenuta, unit: "€") %></p>
-<p><strong>Totale <%= number_to_currency(@total, unit: "€") %></strong></p>
+<section class="main">
+<div class="intestazione">
+  <p>Fattura per:</p>
+  <h4><%= @client.name %></h4>
+  <p><%= simple_format @client.info %></p>
+</div>
+<div class="descrizione">
+  <h4>Descrizione</h4>
+  <p><%= @doc.description %></p>
+</div>
+<div class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td>Prezzo netto</td>
+        <td><%= number_to_currency(@price, unit: "€") %></td>
+      </tr>
+      <tr>
+        <td>Rivalsa inps 4%</td>
+        <td><%= number_to_currency(@inps, unit: "€") %></td>
+      </tr>
+      <tr>
+        <td>Ritenuta 20%</td>
+        <td>- <%= number_to_currency(@ritenuta, unit: "€") %></td>
+      </tr>
+      <tr>
+        <td>Totale</td>
+        <td><%= number_to_currency(@total, unit: "€") %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</section>
 
-<%= link_to "Indietro", client_path(@client) %>
-<%= link_to "Modifica Fattura", edit_client_doc_path(@client, @doc) %>
-<%= link_to "Elimina Fattura", client_doc_path(@client, @doc), method: :delete, data: { confirm: "Are you sure?"} %>
+<footer>
+<h5>Note:</h5>
+<p>IVA ESENTE ARTICOLO 10, COMMA 1 P.TO 22) del DPR 633/72.</p>
+<h5>Termini e condizioni</h5>
+<p>Il pagamento va effettuato a mezzo bonifico bancario sul conto corrente</p>
+<p>Unicredit - Filiale S. Salvador Venezia intestato a:</p>
+<p>Relevant di Samuele Fabbro IBAN: IT 57 T 02008 02004 000041038692</p>
+</footer>
