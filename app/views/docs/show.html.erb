@@ -18,20 +18,26 @@
     <h3>Saldo da pagare</h3>
     <h2><%= number_to_currency(@total, unit: "€") %></h2>
   </div>
+  <% if @doc.order_number.present? %>
+    <div class="numeroordine">
+      Numero d'ordine <%= @doc.order_number %>
+    </div>
+  <% end %>
   <div class="table">
     <table style="width: 280px;" >
       <tbody>
         <tr>
           <td>Data Fattura:</td>
-          <td><%= @doc.created_at.strftime("%d-%m-%Y") %></td>
+          <!-- <td><%= @doc.created_at.strftime("%d-%m-%Y") %></td> -->
+          <td><%= @doc.date %></td>
         </tr>
         <tr>
           <td>Termini:</td>
-          <td>Rimessa a Vista</td>
+          <td><%= @doc.payment %></td>
         </tr>
         <tr>
           <td>Termini scadenza:</td>
-          <td>19.05.2018</td>
+          <td><%= @doc.deadline %></td>
         </tr>
       </tbody>
     </table>
@@ -53,7 +59,7 @@
   <table>
     <tbody>
       <tr>
-        <td>Prezzo netto</td>
+        <td>Tariffa</td>
         <td><%= number_to_currency(@price, unit: "€") %></td>
       </tr>
       <tr>

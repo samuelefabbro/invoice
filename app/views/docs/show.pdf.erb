@@ -1,29 +1,4 @@
-<!-- <p><strong>Relevant di Samuele Fabbro</strong></p>
-<p>Via Sandro Gallo 165A Lido di Venezia 30126 Italia</p>
-<p>P.Iva 03789650276</p>
-<p>C.F. FBBSML77B25L736Q</p>
 
-<h1><%= @client.name %></h1>
-<p><%= @client.info %></p>
-
-<p>Fattura n.<%= @doc.number %> del <%= @doc.created_at.strftime("%d-%m-%Y") %> </p>
-<p><%= @doc.description %></p>
-
-<p>Prezzo netto <%= number_to_currency(@price, unit: "€") %></p>
-<p>Rivalsa inps 4% <%= number_to_currency(@inps, unit: "€") %></p>
-<p>Ritenuta 20% - <%= number_to_currency(@ritenuta, unit: "€") %></p>
-<p><strong>Totale <%= number_to_currency(@total, unit: "€") %></strong></p>
-
-<div class="Note">
-  Note
-  IVA ESENTE ARTICOLO 10, COMMA 1 P.TO 22) del DPR 633/72.
-</div>
-<div class="terms">
-  Termini e condizioni
-  Il pagamento va effettuato a mezzo bonifico bancario sul conto corrente Unicredit - Filiale S. Salvador Venezia intestato a:
-  Relevant di Samuele Fabbro
-  IBAN: IT 57 T 02008 02004 000041038692
-</div> -->
 <!doctype html>
 <html>
 <head>
@@ -48,6 +23,11 @@
     	<h2>Fattura</h2>
     	<p><%= @doc.number %></p>
  		</div>
+    <% if @doc.order_number.present? %>
+      <div class="numeroordine">
+        Numero d'ordine <%= @doc.order_number %>
+      </div>
+    <% end %>
     <div class="saldo">
       <h3>Saldo da pagare</h3>
       <h2><%= number_to_currency(@total, unit: "€") %></h2>
@@ -57,16 +37,17 @@
         <tbody>
           <tr>
             <td>Data Fattura:</td>
-            <td><%= @doc.created_at.strftime("%d-%m-%Y") %></td>
+            <!-- <td><%= @doc.created_at.strftime("%d-%m-%Y") %></td> -->
+            <td><%= @doc.date %></td>
           </tr>
-          <!-- <tr>
+          <tr>
             <td>Termini:</td>
-            <td>Rimessa a Vista</td>
+            <td><%= @doc.payment %></td>
           </tr>
           <tr>
             <td>Termini scadenza:</td>
-            <td>19.05.2018</td>
-          </tr> -->
+            <td><%= @doc.deadline %></td>
+          </tr>
         </tbody>
       </table>
     </div>

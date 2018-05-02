@@ -10,10 +10,10 @@
 	<div class="doc">
 		<%= link_to doc.number, client_doc_path(@client, doc) %>
 		<p class="posted">
-					<%= doc.created_at.strftime("%d-%m-%Y") %>
+					<%= doc.date %>
 		</p>
     <p class="price">
-      <%= doc.price %>
+      <%= number_to_currency(doc.price_in_euro, unit: "€") %>
     </p>
 	</div>
 

@@ -9,7 +9,7 @@ class DocsController < ApplicationController
     @client = Client.find(params[:client_id])
     @doc = @client.docs.find(params[:id])
 
-    @price = @doc.price_in_euro
+    @price = @doc.price_in_euro.to_f
     @inps = @price * 4 / 100
     @ritenuta = @price * 20 / 100
     @total = @price + @inps - @ritenuta
@@ -67,7 +67,7 @@ class DocsController < ApplicationController
   private
 
   def form_params
-    params.require(:doc).permit(:number, :description, :price)
+    params.require(:doc).permit(:number, :order_number, :date, :payment, :deadline, :description, :price)
   end
 
 
