@@ -7,7 +7,7 @@ class Doc < ApplicationRecord
   validates :date, presence: true
 
   def price_in_euro
-    price / 100
+    price.to_f / 100
   end
 
 end

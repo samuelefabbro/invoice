@@ -9,9 +9,9 @@ class DocsController < ApplicationController
     @client = Client.find(params[:client_id])
     @doc = @client.docs.find(params[:id])
 
-    @price = @doc.price_in_euro.to_f
+    @price = @doc.price_in_euro
     @inps = @price * 4 / 100
-    @ritenuta = @price * 20 / 100
+    @ritenuta = (@price + @inps) * 20 / 100
     @total = @price + @inps - @ritenuta
 
     respond_to do |format|
